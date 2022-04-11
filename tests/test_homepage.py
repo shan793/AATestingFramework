@@ -3,7 +3,9 @@ from utilities.BaseClass import BaseClass
 
 
 class TestHomePage(BaseClass):
-
+# This first test login is still pointing to the delta website and it's locators
+# Will have to update this to use the AA flow, Had to stop delta framework,
+# Since delta website does not allow for automation testing
     def test_login(self):
         homepage = HomePage(self.driver)
         logger = self.getLogger()
