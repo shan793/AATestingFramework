@@ -36,8 +36,9 @@ class BaseClass:
     def verify_link_presence(self, text):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, text)))
 
-    def validate_page_has_appeared(self, element):
-        assert element.is_displayed()
+    def validate_page_has_appeared(self, element, time_to_wait):
+        exception_handling = self.get_exception_handling()
+        exception_handling.is_displayed_enhanced(element, time_to_wait, self.driver)
 
     def click_to_close(self, element):
         assert element.is_displayed()

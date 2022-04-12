@@ -54,7 +54,6 @@ class LoginPage:
     def get_login_button(self):
         return self.driver.find_element(*LoginPage.login_button)
 
-
     def login_to_delta(self, username, lastname, password):
         actions = ActionChains(self.driver)
         actions.move_to_element(self.get_username_box)
