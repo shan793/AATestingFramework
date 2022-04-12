@@ -29,8 +29,8 @@ class SearchResultsPage(BaseClass):
 
     def check_origin_arrival_type(self, origin, arrival, trip_type):
         exception_handling = self.get_exception_handling()
-        exception_handling.is_displayed_enhanced(self.first_origin_search_result_dynamic_XPath.format(origin.upper()), 5, self.driver)
-        exception_handling.is_displayed_enhanced(self.first_arrival_search_result_dynamic_XPath.format(arrival.upper()), 5, self.driver)
+        assert exception_handling.is_displayed_enhanced(self.first_origin_search_result_dynamic_XPath.format(origin.upper()), 5, self.driver)
+        assert exception_handling.is_displayed_enhanced(self.first_arrival_search_result_dynamic_XPath.format(arrival.upper()), 5, self.driver)
 
         type_of_trip_in_search_results_validation = self.driver.find_element(By.XPATH, self.type_of_trip_in_search_results_validation_dynamic_XPath.format(trip_type.capitalize()))
         assert type_of_trip_in_search_results_validation.text == trip_type.capitalize()
