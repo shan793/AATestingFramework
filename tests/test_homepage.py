@@ -37,4 +37,5 @@ class TestHomePage(BaseClass):
         self.validate_page_has_appeared(search_results_page.search_results_page_header_XPath, 60)
         search_results_page.validate_correct_departure_date(1, 5, 2023)
         search_results_page.check_origin_arrival_type("DFW", "CMB", "One Way")
+        search_results_page.select_class_and_fare("First")
 

@@ -24,6 +24,7 @@ class SearchResultsPage(BaseClass):
     first_origin_search_result_dynamic_XPath = "//div[@class='span4 span-phone6']/span[@class='flight-airport-code' and contains(text(), '{}')]"
     first_arrival_search_result_dynamic_XPath = "//div[@class='span4 span-phone5']/span[@class='flight-airport-code' and contains(text(), '{}')]"
     type_of_trip_in_search_results_validation_dynamic_XPath = "(//div[@class='triptype']['{}'])"
+    select_fare_dynamic_XPath = "//button[@data-farename='{}']"
 
 
     @property
@@ -56,6 +57,20 @@ class SearchResultsPage(BaseClass):
 
         type_of_trip_in_search_results_validation = self.driver.find_element(By.XPATH, self.type_of_trip_in_search_results_validation_dynamic_XPath.format(trip_type.capitalize()))
         assert type_of_trip_in_search_results_validation.text == trip_type.capitalize()
+
+    def select_class_and_fare(self, classType):
+        classType.replace(" ", "") if classType == "Main Cabin" else classType
+        exception_handling = self.get_exception_handling()
+        assert exception_handling.is_displayed_enhanced(self.select_fare_dynamic_XPath.format(classType.capitalize()), 5, self.driver)
+        fare_to_select = self.driver.find_element(By.XPATH, self.select_fare_dynamic_XPath.format(classType.capitalize()))
+        selected_fare = fare_to_select.get_attribute("data-fare-amount")
+        print(selected_fare)
+        fare_to_select.click()
+
+
+
+
+
 
 
 
