@@ -25,11 +25,8 @@ class TestHomePage(BaseClass):
     def test_search_for_flight(self):
         homepage = HomePage(self.driver)
         search_results_page = SearchResultsPage(self.driver)
-        logger = self.getLogger()
-        actions = self.get_actions()
 
         homepage.enter_cities_to_travel_to("DFW", "CMB")
-        logger.info("Selecting type of trip")
         homepage.select_type_of_trip("One Way")
         homepage.pax_count_picker(5)
         homepage.date_picker(1, 5, 2023)
