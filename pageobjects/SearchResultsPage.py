@@ -59,16 +59,18 @@ class SearchResultsPage(BaseClass):
         assert type_of_trip_in_search_results_validation.text == trip_type.capitalize()
 
     def select_class_and_fare(self, classType):
-        classType.replace(" ", "") if classType == "Main Cabin" else classType
+        if classType == "Main Cabin":
+            classType = classType.replace(" ", "")
+        else:
+            classType = classType.capitalize()
+
         exception_handling = self.get_exception_handling()
-        assert exception_handling.is_displayed_enhanced(self.select_fare_dynamic_XPath.format(classType.capitalize()), 5, self.driver)
-        fare_to_select = self.driver.find_element(By.XPATH, self.select_fare_dynamic_XPath.format(classType.capitalize()))
+        assert exception_handling.is_displayed_enhanced(self.select_fare_dynamic_XPath.format(classType), 5, self.driver)
+        fare_to_select = self.driver.find_element(By.XPATH, self.select_fare_dynamic_XPath.format(classType))
         selected_fare = fare_to_select.get_attribute("data-fare-amount")
         print(selected_fare)
         fare_to_select.click()
-
-
-
+        return selected_fare
 
 
 
